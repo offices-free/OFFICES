@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>OFFICES</title>
+<style>
+:root{--blue:#185abd;--light:#f5f7fa;--line:#d8dee8;--text:#202124}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text)}
+button,input,select{font:inherit}button{border:1px solid var(--line);background:#fff;border-radius:5px;padding:7px 10px;cursor:pointer}button:hover{background:#eef3f9}
+.top{height:58px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 16px;position:sticky;top:0;z-index:20}.brand{font-size:23px;font-weight:800;color:var(--blue);letter-spacing:.5px}.status{margin-left:auto;font-size:12px;color:#687385}
+.home{max-width:1000px;margin:0 auto;padding:34px 18px}.home h1{font-size:32px;margin:5px 0}.home p{color:#697386}.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}.app{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 24px;min-height:230px;box-shadow:0 3px 12px #0000000b}.appicon{font-size:45px}.app h2{margin:15px 0 8px}.app p{min-height:42px}.open{color:#fff;background:var(--blue);border-color:var(--blue)}
+.editor{display:none}.appbar{background:#fff;border-bottom:1px solid var(--line);padding:8px 12px;display:flex;gap:8px;align-items:center;position:sticky;top:58px;z-index:15}.back{font-weight:bold}.tabs{display:flex;gap:2px;overflow-x:auto;background:#fff;border-bottom:1px solid var(--line);padding:0 10px;position:sticky;top:108px;z-index:14}.tab{border:0;border-radius:0;background:#fff;padding:11px 14px;white-space:nowrap}.tab.active{border-bottom:3px solid var(--blue);color:var(--blue);font-weight:bold}.ribbon{display:flex;gap:7px;flex-wrap:wrap;padding:9px 10px;background:#fff;border-bottom:1px solid var(--line);min-height:52px}.group{display:flex;gap:5px;align-items:center;border-right:1px solid #e4e7ec;padding-right:8px}.group label{font-size:11px;color:#778}.workspace{padding:18px;min-height:calc(100vh - 180px)}.paper{background:#fff;max-width:850px;min-height:950px;margin:0 auto;padding:70px;box-shadow:0 2px 10px #00000018;outline:0;line-height:1.55}.paper h1{font-size:28px}.formula{background:#fff;border:1px solid var(--line);padding:7px 10px;min-width:120px;flex:1}.sheetwrap{background:#fff;border:1px solid var(--line);overflow:auto}.grid{border-collapse:collapse;min-width:900px}.grid th,.grid td{border:1px solid #d5dbe4;height:31px;min-width:105px;padding:5px}.grid th{background:#f2f4f7;position:sticky;top:0}.grid .rowhead{min-width:42px;width:42px}.grid td:focus{outline:2px solid #4f8fe8}.slides-layout{display:grid;grid-template-columns:190px 1fr;gap:18px;max-width:1200px;margin:auto}.thumbs{background:#fff;border:1px solid var(--line);padding:10px;min-height:500px}.thumb{border:2px solid transparent;margin-bottom:10px;padding:8px;background:#f7f8fa;aspect-ratio:16/9;cursor:pointer;font-size:10px}.thumb.sel{border-color:var(--blue)}.stage{background:#dfe3e9;padding:25px;min-height:600px}.slide{background:#fff;aspect-ratio:16/9;max-width:900px;margin:auto;padding:9%;outline:0;box-shadow:0 2px 10px #0002}.slide h1{font-size:clamp(24px,4vw,50px)}.note{font-size:12px;color:#6b7280;padding:8px 10px}.hidden{display:none!important}
+@media(max-width:720px){.apps{grid-template-columns:1fr}.home{padding:22px 14px}.app{min-height:170px}.status{display:none}.tabs{top:58px}.ribbon{position:sticky;top:101px;z-index:13}.workspace{padding:9px}.paper{padding:28px 18px;min-height:700px}.slides-layout{grid-template-columns:1fr}.thumbs{display:flex;gap:8px;overflow:auto;min-height:auto}.thumb{min-width:130px;margin:0}.stage{padding:8px;min-height:400px}.group{border-right:0}.formula{min-width:90px}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="brand">OFFICES</div><div class="status">Free • No sign-in required</div></header>
+
+<section id="home" class="home">
+<h1>OFFICES</h1><p>Choose the tool you want to use.</p>
+<div class="apps">
+<div class="app"><div class="appicon">📝</div><h2>Word</h2><p>Create and format documents.</p><button class="open" onclick="openEditor('word')">Open Word</button></div>
+<div class="app"><div class="appicon">📊</div><h2>Excel</h2><p>Work with spreadsheets and formulas.</p><button class="open" onclick="openEditor('excel')">Open Excel</button></div>
+<div class="app"><div class="appicon">📽️</div><h2>PowerPoint</h2><p>Create and present slides.</p><button class="open" onclick="openEditor('ppt')">Open PowerPoint</button></div>
+</div>
+</section>
+
+<section id="word" class="editor">
+<div class="appbar"><button class="back" onclick="goHome()">← OFFICES</button><b>Document</b><button onclick="downloadWord()">Save/Download</button></div>
+<div class="tabs"><button class="tab active">File</button><button class="tab">Home</button><button class="tab">Insert</button><button class="tab">Design</button><button class="tab">Layout</button><button class="tab">References</button><button class="tab">Review</button><button class="tab">View</button></div>
+<div class="ribbon">
+<div class="group"><button onclick="wcmd('undo')">↶</button><button onclick="wcmd('redo')">↷</button></div>
+<div class="group"><select id="font" onchange="wcmd('fontName',this.value)"><option>Arial</option><option>Times New Roman</option><option>Georgia</option><option>Courier New</option></select><select id="size" onchange="wcmd('fontSize',this.value)"><option value="3">11</option><option value="4">14</option><option value="5">18</option><option value="6">24</option><option value="7">32</option></select></div>
+<div class="group"><button onclick="wcmd('bold')"><b>B</b></button><button onclick="wcmd('italic')"><i>I</i></button><button onclick="wcmd('underline')"><u>U</u></button></div>
+<div class="group"><button onclick="wcmd('justifyLeft')">☰</button><button onclick="wcmd('justifyCenter')">≡</button><button onclick="wcmd('justifyRight')">☷</button></div>
+<div class="group"><button onclick="wcmd('insertUnorderedList')">• List</button><button onclick="wcmd('insertOrderedList')">1. List</button></div>
+<div class="group"><button onclick="insertTable()">Table</button><button onclick="insertImage()">Image</button>
+<button onclick="wcmd('formatBlock','H1')">Heading</button><button onclick="wcmd('removeFormat')">Clear Format</button></div>
+</div>
+<div class="workspace"><div id="paper" class="paper" contenteditable="true"><h1>Untitled Document</h1><p>Start typing here...</p></div></div>
+</section>
+
+<section id="excel" class="editor">
+<div class="appbar"><button class="back" onclick="goHome()">← OFFICES</button><b>Book1</b><button onclick="addExcelRow()">+ Row</button><button onclick="addExcelCol()">+ Column</button><button onclick="downloadExcel()">Download CSV</button></div>
+<div class="tabs"><button class="tab active">File</button><button class="tab">Home</button><button class="tab">Insert</button><button class="tab">Page Layout</button><button class="tab">Formulas</button><button class="tab">Data</button><button class="tab">Review</button><button class="tab">View</button></div>
+<div class="ribbon"><div class="group"><button onclick="excelFormat('bold')"><b>B</b></button><button onclick="excelFormat('italic')"><i>I</i></button></div><div class="group"><button onclick="sumSelected()">Σ AutoSum</button><button onclick="avgSelected()">Average</button><button onclick="countSelected()">Count</button></div>
+<div class="group"><button onclick="sortSheet()">Sort A→Z</button><button onclick="filterSheet()">Filter</button></div><div class="group"><button onclick="clearCell()">Clear</button></div></div>
+<div class="workspace"><div class="formula"><b>fx</b> <input id="formulaInput" style="border:0;outline:0;width:85%" placeholder="Select a cell"></div><div class="sheetwrap"><table id="grid" class="grid"></table></div><div class="note">Tip: type numbers or formulas such as =SUM(A1:A3).</div></div>
+</section>
+
+<section id="ppt" class="editor">
+<div class="appbar"><button class="back" onclick="goHome()">← OFFICES</button><b>Presentation</b><button onclick="addSlide()">+ New Slide</button><button onclick="startShow()">▶ Slide Show</button><button onclick="downloadPpt()">Download</button></div>
+<div class="tabs"><button class="tab active">File</button><button class="tab">Home</button><button class="tab">Insert</button><button class="tab">Design</button><button class="tab">Transitions</button><button class="tab">Animations</button><button class="tab">Slide Show</button><button class="tab">Review</button><button class="tab">View</button></div>
+<div class="ribbon"><div class="group"><button onclick="pptBold()"><b>B</b></button><button onclick="pptItalic()"><i>I</i></button></div><div class="group"><button onclick="addSlide()">New Slide</button><button onclick="deleteSlide()">Delete Slide</button></div><div class="group"><button onclick="changeTheme()">Theme</button><button onclick="addPptText()">Text Box</button></div></div>
+<div class="workspace"><div class="slides-layout"><div id="thumbs" class="thumbs"></div><div class="stage"><div id="slide" class="slide" contenteditable="true"><h1>Presentation Title</h1><p>Click to add text</p></div></div></div></div>
+</section>
+
+<script>
+let current='home', rows=15, cols=10, selectedCell=null, slideNo=1;
+
+function openEditor(id){document.getElementById('home').style.display='none';document.querySelectorAll('.editor').forEach(e=>e.style.display='none');document.getElementById(id).style.display='block';current=id;if(id==='excel')buildGrid();if(id==='ppt')renderThumbs();}
+function goHome(){document.querySelectorAll('.editor').forEach(e=>e.style.display='none');document.getElementById('home').style.display='block';current='home'}
+function wcmd(c,v=null){document.getElementById('paper').focus();document.execCommand(c,false,v)}
+function insertTable(){let t=document.createElement('table');t.border='1';t.innerHTML='<tr><td>Cell</td><td>Cell</td></tr><tr><td>Cell</td><td>Cell</td></tr>';document.getElementById('paper').appendChild(t)}
+function insertImage(){let url=prompt('Image URL');if(url){document.execCommand('insertImage',false,url)}}
+function downloadFile(name,data,type){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type}));a.download=name;a.click()}
+function downloadWord(){downloadFile('OFFICES-document.html',document.getElementById('paper').innerHTML,'text/html')}
+setInterval(()=>{localStorage.setItem('offices_word',document.getElementById('paper').innerHTML)},3000);
+window.addEventListener('load',()=>{let saved=localStorage.getItem('offices_word');if(saved)document.getElementById('paper').innerHTML=saved;});
+
+function buildGrid(){let t=document.getElementById('grid');t.innerHTML='';let h=document.createElement('tr');h.innerHTML='<th class="rowhead"></th>';for(let c=0;c<cols;c++){let th=document.createElement('th');th.textContent=String.fromCharCode(65+c);h.appendChild(th)}t.appendChild(h);for(let r=1;r<=rows;r++){let tr=document.createElement('tr');let rh=document.createElement('th');rh.className='rowhead';rh.textContent=r;tr.appendChild(rh);for(let c=0;c<cols;c++){let td=document.createElement('td');td.contentEditable='true';td.dataset.r=r;td.dataset.c=c;td.addEventListener('focus',()=>{selectedCell=td;document.getElementById('formulaInput').value=td.textContent});td.addEventListener('input',()=>calcCell(td));tr.appendChild(td)}t.appendChild(tr)}}
+function addExcelRow(){rows++;buildGrid()}function addExcelCol(){cols++;buildGrid()}
+function calcCell(td){let v=td.textContent.trim();if(v.startsWith('=SUM(')){let m=v.match(/=SUM\\(([A-Z]+)(\\d+):([A-Z]+)(\\d+)\\)/i);if(m){let a=Number(m[2]),b=Number(m[4]),c1=m[1].toUpperCase().charCodeAt(0)-65,c2=m[3].toUpperCase().charCodeAt(0)-65,s=0;for(let r=a;r<=b;r++){let cell=document.querySelector(`#grid td[data-r="${r}"][data-c="${c1}"]`);s+=Number(cell?.innerText)||0}td.title='Result: '+s}}}
+function excelFormat(c){if(selectedCell)selectedCell.style.fontWeight=c==='bold'?'bold':'normal'}
+function clearCell(){if(selectedCell)selectedCell.innerText=''}function sumSelected(){if(selectedCell){let r=Number(selectedCell.dataset.r);let c=Number(selectedCell.dataset.c);if(r>1)selectedCell.innerText='=SUM('+String.fromCharCode(65+c)+'1:'+String.fromCharCode(65+c)+(r-1)+')'}}
+function avgSelected(){if(selectedCell){let r=Number(selectedCell.dataset.r);let c=Number(selectedCell.dataset.c);if(r>1)selectedCell.innerText='=AVERAGE('+String.fromCharCode(65+c)+'1:'+String.fromCharCode(65+c)+(r-1)+')'}}
+function countSelected(){if(selectedCell){let r=Number(selectedCell.dataset.r);let c=Number(selectedCell.dataset.c);if(r>1)selectedCell.innerText='=COUNT('+String.fromCharCode(65+c)+'1:'+String.fromCharCode(65+c)+(r-1)+')'}}
+function sortSheet(){let t=document.getElementById('grid');let body=[...t.rows].slice(1);body.sort((a,b)=>(a.cells[1]?.innerText||'').localeCompare(b.cells[1]?.innerText||'',undefined,{numeric:true}));body.forEach(r=>t.appendChild(r))}
+function filterSheet(){let value=prompt('Show rows containing:');if(value===null)return;[...document.querySelectorAll('#grid tr')].slice(1).forEach(r=>r.style.display=([...r.cells].some(c=>c.innerText.toLowerCase().includes(value.toLowerCase()))?'':'none'))}
+function downloadExcel(){let out=[...document.querySelectorAll('#grid tr')].map(r=>[...r.children].slice(1).map(c=>`"${c.innerText.replaceAll('"','""')}"`).join(',')).join('\\n');downloadFile('OFFICES-spreadsheet.csv',out,'text/csv')}
+
+function renderThumbs(){let t=document.getElementById('thumbs');t.innerHTML='';for(let i=1;i<=slideNo;i++){let d=document.createElement('div');d.className='thumb'+(i===slideNo?' sel':'');d.innerHTML='<b>Slide '+i+'</b><br>Click to select';d.onclick=()=>{document.querySelectorAll('.thumb').forEach(x=>x.classList.remove('sel'));d.classList.add('sel')};t.appendChild(d)}}
+function addSlide(){slideNo++;document.getElementById('slide').innerHTML='<h1>Slide '+slideNo+'</h1><p>Click to add text</p>';renderThumbs()}
+function deleteSlide(){if(slideNo>1){slideNo--;document.getElementById('slide').innerHTML='<h1>Slide '+slideNo+'</h1><p>Click to add text</p>';renderThumbs()}}
+function pptBold(){document.getElementById('slide').focus();document.execCommand('bold')}
+function pptItalic(){document.getElementById('slide').focus();document.execCommand('italic')}
+function addPptText(){document.getElementById('slide').focus();document.execCommand('insertText',false,' New text')}
+function changeTheme(){document.getElementById('slide').style.background=document.getElementById('slide').style.background?'':'#eef5ff'}
+function startShow(){let w=window.open('','_blank');if(w)w.document.write('<html><body style="margin:0;background:#111;display:flex;align-items:center;justify-content:center;height:100vh"><div style="background:white;width:90%;aspect-ratio:16/9;padding:8%;font-family:Arial">'+document.getElementById('slide').innerHTML+'</div></body></html>')}
+function downloadPpt(){downloadFile('OFFICES-presentation.html',document.getElementById('slide').outerHTML,'text/html')}
+</script>
+</body>
+</html>
